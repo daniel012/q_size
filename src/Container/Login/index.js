@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router';
+import { UserContext } from '../../Component/UserProvider';
 import styled from 'styled-components';
-import Button from '../Button';
+import Button from '../../Component/Button';
 const Wrapper = styled.div`
     margin: auto;
     text-align: center;
@@ -10,10 +12,16 @@ const Wrapper = styled.div`
 
 const Login = () => {
     const [isSearching, setSeatching] = useState(false);
+    let history = useHistory();
+    const { setUser } = React.useContext(UserContext)
+
     const validateUser = (event) => {
         event.preventDefault();
         setSeatching(true);
-        //alert('guapo')
+        history.push('/prints');
+        console.log('name:', event.target.name.value);
+        console.log('pass:', event.target.pass.value);
+        setUser(event.target.name.value)
     }
     return (
         <Wrapper>
@@ -29,7 +37,7 @@ const Login = () => {
                     <label htmlFor="pass">Contraseña: </label>
                     <input id="pass" type="password" disabled={isSearching}></input>
                 </div>
-                <Button isLoading={isSearching} text="Login" onClick={validateUser} type="submit"/>
+                <Button isLoading={isSearching} text="Login" type="submit"/>
 
             </form>
         </Wrapper> 

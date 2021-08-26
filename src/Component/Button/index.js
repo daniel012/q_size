@@ -13,9 +13,9 @@ const ButtonStyle = styled.button`
 
 
 
-const Button = ({isLoading, text}) => {
+const Button = ({isLoading, text, ...props}) => {
     return(
-        <ButtonStyle >
+        <ButtonStyle  {...props} >
             {
                 isLoading && 
                 <ImageWraper src={process.env.PUBLIC_URL + '/loading.jpg'} 
