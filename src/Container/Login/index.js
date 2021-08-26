@@ -17,11 +17,13 @@ const Login = () => {
 
     const validateUser = (event) => {
         event.preventDefault();
-        setSeatching(true);
-        history.push('/prints');
-        console.log('name:', event.target.name.value);
-        console.log('pass:', event.target.pass.value);
-        setUser(event.target.name.value)
+        const name = event.target.name.value;
+        const pass =  event.target.pass.value;
+        if(!!name && !!pass) {
+            setUser(event.target.name.value);
+            setSeatching(true);
+            history.push('/prints');
+        }
     }
     return (
         <Wrapper>
@@ -37,7 +39,7 @@ const Login = () => {
                     <label htmlFor="pass">Contraseña: </label>
                     <input id="pass" type="password" disabled={isSearching}></input>
                 </div>
-                <Button isLoading={isSearching} text="Login" type="submit"/>
+                <Button isLoading={isSearching} text="Login" type="submit" />
 
             </form>
         </Wrapper> 

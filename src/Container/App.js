@@ -7,11 +7,13 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import UserInfo from '../Component/UserInfo/Index';
 
 function App() {
   return (
     <React.Fragment>
       <UserContextProvider>
+        <UserInfo /> 
         <Router>
           <Switch>
             <Route path="/prints">
