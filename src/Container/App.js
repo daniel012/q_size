@@ -8,10 +8,15 @@ import {
   Route
 } from "react-router-dom";
 import UserInfo from '../Component/UserInfo/Index';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <React.Fragment>
+      <ToastContainer
+      position="top-center"
+      draggable />
       <UserContextProvider>
         <UserInfo /> 
         <Router>

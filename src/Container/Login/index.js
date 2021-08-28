@@ -3,6 +3,9 @@ import { useHistory } from 'react-router';
 import { UserContext } from '../../Component/UserProvider';
 import styled from 'styled-components';
 import Button from '../../Component/Button';
+import { toast } from 'react-toastify';
+
+
 const Wrapper = styled.div`
     margin: auto;
     text-align: center;
@@ -14,15 +17,21 @@ const Login = () => {
     const [isSearching, setSeatching] = useState(false);
     let history = useHistory();
     const { setUser } = React.useContext(UserContext)
-
+    
     const validateUser = (event) => {
         event.preventDefault();
         const name = event.target.name.value;
         const pass =  event.target.pass.value;
         if(!!name && !!pass) {
-            setUser(event.target.name.value);
-            setSeatching(true);
-            history.push('/prints');
+            if(name === 'CAST' &&  pass === 'QuaLit4$TI') {
+                toast.success("bienvenido",);
+                setUser(event.target.name.value);
+                setSeatching(true);
+                history.push('/prints');
+            } else {
+                toast.error("usuario invalido",);
+            }
+
         }
     }
     return (
@@ -40,10 +49,8 @@ const Login = () => {
                     <input id="pass" type="password" disabled={isSearching}></input>
                 </div>
                 <Button isLoading={isSearching} text="Login" type="submit" />
-
             </form>
-        </Wrapper> 
-        
+        </Wrapper>
     );
 }
 export default Login;
