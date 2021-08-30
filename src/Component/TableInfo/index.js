@@ -6,6 +6,8 @@ import './index.css';
 
 const Container = styled.div`
   padding: 5px;
+  overflow-y: scroll;
+  height: 500px;
 `;
 
 const CellInfo = styled.td`
@@ -29,21 +31,21 @@ const TableInfo = ({ info, action }) => {
         <tr>
           <th >IP</th>
           <th>Nombre</th>
-          <th>Size</th>
+          <th>SISE</th>
           <th>Modelo</th>
         </tr>
-        {info.map(({ ip, nombre, modelo, size }) => (
+        {info.map(({ ip, nombre, modelo, sise }) => (
           <tr>
             <CellInfo>
               <div>
-                <Button text="Instalar" style={{padding: '1px 20px'}} onClick={action} name={ip} />
+                <Button text="Reparar" style={{padding: '1px 20px'}} onClick={action} name={ip} disabled={!ip} />
               </div>
               <div>
                 {ip}
               </div>
             </CellInfo>
             <td>{nombre}</td>
-            <td>{size}</td>
+            <td>{sise}</td>
             <td>{modelo}</td>
           </tr>
         ))}

@@ -19,12 +19,22 @@ const Print = () => {
     const history = useHistory();
     const InfoInstall = (event) => {
       const ip = event.target.name;
-      toast.info(`Instalando Impresora: ${ip} por favor espere`);
+      toast.info(`Reparando: ${ip} por favor espere`);
       setInstallPrint(true)
+      axios.post('http://192.168.0.10:5000/repair', {
+        ip
+      })
+      .then((response) => {
+        setInstallPrint(false);
+        toast.success('Reparacion complatado')
+      }, (error) => {
+        console.error(error);
+        toast.error('error');
+      });
     }
     const searchPrint = event => {
         if (event.key === 'Enter') {
-            axios.get(`http://localhost:5000/?key=${key}`)
+            axios.get(`http://192.168.0.10:5000/?key=${key}`)
                 .then(({data}) => setPrints(data))
                 .catch((error) => {
                     toast.error(error);
@@ -36,7 +46,7 @@ const Print = () => {
 
     useEffect(()=> {
 
-            axios.get(`http://localhost:5000/`)
+            axios.get(`http://192.168.0.10:5000/`)
             .then(({data}) => setPrints(data))
             .catch((error) => {
               toast.error(error);
