@@ -27,7 +27,7 @@ const Print = () => {
             axios.get(`http://localhost:5000/?key=${key}`)
                 .then(({data}) => setPrints(data))
                 .catch((error) => {
-                    console.log(error);
+                    toast.error(error);
                 })
         }
 
@@ -39,6 +39,7 @@ const Print = () => {
             axios.get(`http://localhost:5000/`)
             .then(({data}) => setPrints(data))
             .catch((error) => {
+              toast.error(error);
             });
 
     },[]);
