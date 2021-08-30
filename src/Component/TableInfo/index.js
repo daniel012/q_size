@@ -41,7 +41,7 @@ const TableInfo = ({ info, action }) => {
                 <Button text="Reparar" style={{padding: '1px 20px'}} onClick={action} name={ip} disabled={!ip} />
               </div>
               <div>
-                {ip}
+                <a href={`http://${ip}`} target="_blank">{ip}</a>
               </div>
             </CellInfo>
             <td>{nombre}</td>
